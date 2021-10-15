@@ -14,7 +14,6 @@ class CelulaCustomizada: UITableViewCell {
     
     @IBOutlet weak var labelDescricao: UILabel!
     @IBOutlet weak var viewUrgencia: UIView!
-    
     @IBOutlet weak var feitoSwitch: UISwitch!
     
     override func awakeFromNib() {

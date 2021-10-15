@@ -17,6 +17,10 @@ class ViewController: UIViewController {
         return tarefasTableView.numberOfRows(inSection: 0) - 1
     }
     
+    /// Array com os dados de tarefas a serem utilizados pela UITableView.
+    /// Para essa versão inicial, mantivemos esses dados na ViewController.
+    /// Idealmente, esse array seria carregado a partir de uma chamada de API, ou descrito
+    /// em outra classe.
     var tarefas: [Tarefa] = [
         Tarefa(descricao: "Alimentar meu gato", urgencia: .maxima),
         Tarefa(descricao: "Regar as plantas", urgencia: .normal),
@@ -49,7 +53,39 @@ class ViewController: UIViewController {
          )
          */
     }
-
+    
+    
+    
+    func criaCelula(_ tableView: UITableView, for indexPath: IndexPath) -> UITableViewCell {
+        
+        let tarefa = self.tarefas[indexPath.row]
+        
+        let celulaCustomizada = tableView.dequeueReusableCell(
+            withIdentifier: CelulaCustomizada.identificador,
+            for: indexPath ) as? CelulaCustomizada
+        
+        guard let novaCelula = celulaCustomizada else {
+            return UITableViewCell()
+        }
+        
+        celulaCustomizada?.popular(com: tarefa)
+        
+        return novaCelula
+    }
+    
+    
+    func criaCelulaAdicionar(_ tableView: UITableView, for indexPath: IndexPath) -> UITableViewCell {
+        let celula = tableView.dequeueReusableCell(withIdentifier: self.identificadorCelula, for: indexPath)
+        
+        var configuration = celula.defaultContentConfiguration()
+        configuration.text = "Adicionar"
+        configuration.textProperties.color = UIColor.systemBlue
+    
+        celula.contentConfiguration = configuration
+        
+        return celula
+    }
+    
 }
 
 
@@ -59,13 +95,6 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == ultimoIndiceTabela {
             performSegue(withIdentifier: "apresentaNovaTarefa", sender: nil)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            tarefas.remove(at: indexPath.row)
-            tableView.reloadData()
         }
     }
 }
@@ -96,37 +125,11 @@ extension ViewController: UITableViewDataSource {
         return celula
     }
     
-    func criaCelula(_ tableView: UITableView, for indexPath: IndexPath) -> UITableViewCell {
-        
-        let tarefa = self.tarefas[indexPath.row]
-        
-        let celulaCustomizada = tableView.dequeueReusableCell(
-            withIdentifier: CelulaCustomizada.identificador,
-            for: indexPath ) as? CelulaCustomizada
-        
-        if let novaCelula = celulaCustomizada {
-            
-            celulaCustomizada?.popular(com: tarefa)
-
-            return novaCelula
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tarefas.remove(at: indexPath.row)
+            tableView.reloadData()
         }
-        
-        return UITableViewCell()
-        
     }
-    
-    
-    func criaCelulaAdicionar(_ tableView: UITableView, for indexPath: IndexPath) -> UITableViewCell {
-        let celula = tableView.dequeueReusableCell(withIdentifier: self.identificadorCelula, for: indexPath)
-        
-        var configuration = celula.defaultContentConfiguration()
-        configuration.text = "Adicionar"
-        configuration.textProperties.color = UIColor.systemBlue
-    
-        celula.contentConfiguration = configuration
-        
-        return celula
-    }
-    
     
 }

@@ -30,5 +30,4 @@ Nesse projeto, teremos uma introdução para a classe **UITableView** por meio d
 💡 Swift: arrays, struct, Enum, herança de classes, protocolo.
 
 
-<img src="screenshot1.png" alt="Lista Tarefas" width="200"/>
-<img src="screenshot2.png" alt="Adicionar Tarefa" width="200"/>
+<img src="screenshot1.png" alt="Lista Tarefas" width="200"/> <img src="screenshot2.png" alt="Adicionar Tarefa" width="200"/>

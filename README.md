@@ -19,7 +19,7 @@ Uma introdução de como organizar esse código em um **padrão MVC**.
 
 Utilizar métodos do UITableViewDataSource para permitir deletar células com Swipe.
 
-*Uma* maneira de transmitir informação entre UIViewControllers, e discutir problemas com esse caminho.
+Duas maneiras de transmitir informação entre UIViewControllers, e discutir problemas com esses caminhos.
 
 Variáveis estáticas e computadas.
 

@@ -17,6 +17,11 @@ class NovaTarefaViewController: UIViewController {
     
     private var urgenciaSelecionada: Urgencia = .normal
     
+    static var storyboardID = "NovaTarefaViewController"
+    
+    /// Jeito 2 ->  tendo instanciado a ViewController
+    var funcaoAoTerminar: ((Tarefa) -> ())?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -36,10 +41,16 @@ class NovaTarefaViewController: UIViewController {
             urgencia: urgenciaSelecionada
         )
         
+        /// Jeito 1 ->  performando o segue
+        /*
         if let viewControllerPai = self.presentingViewController as? ViewController {
             viewControllerPai.tarefas.append(novaTarefa)
             viewControllerPai.tarefasTableView.reloadData()
         }
+         */
+        
+        /// Jeito 2 -> Tendo instanciado a ViewController
+        self.funcaoAoTerminar?(novaTarefa)
         
         self.dismiss(animated: true, completion: nil)
     }

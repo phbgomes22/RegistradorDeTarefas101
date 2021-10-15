@@ -79,11 +79,17 @@ class ViewController: UIViewController {
         
         var configuration = celula.defaultContentConfiguration()
         configuration.text = "Adicionar"
+        configuration.secondaryText = "Uma nova tarefa"
         configuration.textProperties.color = UIColor.systemBlue
     
         celula.contentConfiguration = configuration
         
         return celula
+    }
+    
+    func atualizaLista(tarefa: Tarefa) {
+        self.tarefas.append(tarefa)
+        self.tarefasTableView.reloadData()
     }
     
 }
@@ -94,7 +100,18 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == ultimoIndiceTabela {
-            performSegue(withIdentifier: "apresentaNovaTarefa", sender: nil)
+            
+            /// Jeito 1 -> Segue
+            //performSegue(withIdentifier: "apresentaNovaTarefa", sender: nil)
+            
+            
+            /// Jeito 2 -> Instanciando a ViewController
+            guard let novaTarefaVC = storyboard?.instantiateViewController(
+                withIdentifier: NovaTarefaViewController.storyboardID
+            ) as? NovaTarefaViewController else { return }
+            
+            novaTarefaVC.funcaoAoTerminar = atualizaLista
+            self.present(novaTarefaVC, animated: true, completion: nil)
         }
     }
 }

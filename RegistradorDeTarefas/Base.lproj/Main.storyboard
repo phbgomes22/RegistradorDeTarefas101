@@ -48,7 +48,7 @@
         <!--Nova Tarefa View Controller-->
         <scene sceneID="cbT-gZ-nv3">
             <objects>
-                <viewController id="sWA-HZ-gzu" customClass="NovaTarefaViewController" customModule="RegistradorDeTarefas" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NovaTarefaViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sWA-HZ-gzu" customClass="NovaTarefaViewController" customModule="RegistradorDeTarefas" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="d4F-Bg-2lL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
